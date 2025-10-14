@@ -1,32 +1,260 @@
-<div class="overlay" id="overlay"></div>
+<script>
+        const hamburger = document.getElementById(hamburger);
+        const sideMenu = document.getElementById(side-menu);
+        const overlay = document.getElementById(overlay);
+        const closeBtn = document.getElementById(close-btn); // Nuevo
 
-    <header class="hero">
-        <h1>El Jazz que <span class="h1_span">Escuchas...</span><br><span class="h1_span_2">y el que Aún no has
-                Descubierto.</span></h1>
-        <button class="catalog-btn">Ver Catálogo</button>
-    </header>
+        // Función para cerrar el menú
+        const closeMenu = () => {
+            sideMenu.classList.remove(show);
+            overlay.classList.remove(show);
+            // Nota: Aquí se elimina active si lo usaras en el CSS de la hamburguesa, pero no es esencial ahora.
+        };
 
-    <section class="album-section">
-        <div class="vinyl-container">
-            <img src="media/discoVinilo.png" alt="Vinilo Kind of Blue" class="vinyl">
-        </div>
-        <h2 class="album-title">Kind of Blue</h2>
-        <h3 class="precio">153,20€</h3>
+        // Evento Abrir
+        hamburger.addEventListener(click, () => {
+            // No necesitas .active en hamburger si usas el símbolo simple.
+            // Si usaras las 3 líneas, lo necesitarías.
+            sideMenu.classList.toggle(show);
+            overlay.classList.toggle(show);
+        });
 
-        <div class="player">
-            <img src="media/Spotify.png" alt="Miles Davis" class="album-cover">
-        </div>
-    </section>
+        // Eventos Cerrar (Overlay y Botón X)
+        overlay.addEventListener(click, closeMenu);
+        closeBtn.addEventListener(click, closeMenu);
 
-    <section class="about">
-        <p>
-            En Midnight Wax vivimos el jazz en vinilo. Seleccionamos clásicos,
-            <span class="highlight">ediciones limitadas</span> y rarezas para que cada disco sea una experiencia única.
-        </p>
-        <img src="media/ElNegro.png" alt="Miles Davis tocando" class="about-img">
-        <p>
-            Creemos en el calor del sonido analógico, en la <span class="highlight">emoción de descubrir</span> nuevas
-            joyas
-            y en compartir la pasión por el jazz. Tu refugio online para coleccionar, escuchar y sentir cada nota.
-        </p>
-    </section> echo # DAW2
+    </script> echo /* ======= Fuente y colores base ======= */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0a0b1a;
+    /* Azul muy oscuro */
+    color: white;
+    font-family: Inter, sans-serif;
+    line-height: 1.6;
+}
+
+/* ======= NAVBAR ======= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #0a0b1a;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #7a7ae6;
+}
+
+.hamburger {
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}
+
+/* ... (El CSS del body y navbar se mantiene igual) ... */
+
+/* ======= MENÚ LATERAL ======= */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: #16172b;
+    /* Comienza fuera de la pantalla */
+    transform: translateX(-100%); 
+    transition: transform 0.4s ease-in-out;
+    padding-top: 60px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+/* CLASE QUE ACTIVA EL MENÚ - AHORA COINCIDE CON EL JS */
+.side-menu.show {
+    /* Mueve el menú a la posición visible (0) */
+    transform: translateX(0);
+}
+
+.side-menu .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    z-index: 2001; /* Asegurar que esté sobre el menú */
+}
+
+/* ... (El resto del CSS del side-menu ul/li/a se mantiene igual) ... */
+
+
+/* ======= OVERLAY (Añadido para que aparezca) ======= */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    /* Fondo oscuro semitransparente */
+    display: none;
+    /* Oculto por defecto */
+    z-index: 1500;
+}
+
+/* CLASE QUE ACTIVA EL OVERLAY - AHORA COINCIDE CON EL JS */
+.overlay.show {
+    display: block;
+}
+
+/* ... (El resto del CSS se mantiene igual) ... */
+
+/* ======= Encabezado ======= */
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+}
+
+.h1_span {
+    font-family: Eb Garamond, serif;
+    font-style: italic;
+    color: #5a5ad0;
+    /* Azul lila */
+}
+
+.h1_span_2 {
+    font-size: 3rem;
+}
+
+.catalog-btn {
+    margin-top: 0px;
+    background: #5a5ad0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.catalog-btn:hover {
+    background: #7a7ae6;
+}
+
+/* ======= Sección del álbum ======= */
+.album-section {
+    text-align: center;
+    margin: 50px auto;
+}
+
+.vinyl-container {
+    display: flex;
+    justify-content: center;
+}
+
+.vinyl {
+    width: 40vw;
+    border-radius: 50%;
+}
+
+.album-title {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.precio {
+    font-size: 1.2rem;
+    color: #4A4A5A;
+}
+
+/* ======= Reproductor ======= */
+.player {
+    display: inline-block;
+    margin-top: 20px;
+    width: 30vw;
+    height: auto;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.album-cover {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.song-title {
+    font-weight: 600;
+}
+
+.artist {
+    font-size: 0.85rem;
+    color: #a1a1a1;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.progress-bar {
+    margin-top: 10px;
+    height: 4px;
+    background: #2a2a40;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 30%;
+    height: 100%;
+    background: #5a5ad0;
+}
+
+/* ======= Sección "Sobre nosotros" ======= */
+.about {
+    max-width: 80vw;
+    margin: 60px auto;
+    padding-top: 10rem;
+}
+
+.about p {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+}
+
+.highlight {
+    color: #4A4A5A;
+}
+
+.about-img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+} echo # DAW2
