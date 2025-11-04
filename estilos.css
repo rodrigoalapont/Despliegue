@@ -4,7 +4,7 @@ body {
     padding: 0;
     background-color: #0a0b1a;
     /* Azul muy oscuro */
-    color: white;
+    color: rgb(225, 221, 221);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
 }
@@ -15,7 +15,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background: #0a0b1a;
+    background: #4b4e77;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -25,7 +25,7 @@ body {
 .logo {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #7a7ae6;
+    color: #4b4b73;
 }
 
 .hamburger {
@@ -45,7 +45,7 @@ body {
     left: 0;
     height: 100%;
     width: 250px;
-    background: #16172b;
+    background: #6a6eb7;
     /* Comienza fuera de la pantalla */
     transform: translateX(-100%); 
     transition: transform 0.4s ease-in-out;
@@ -163,7 +163,7 @@ body {
 /* ======= Sección del álbum ======= */
 .album-section {
     text-align: center;
-    margin: 50px auto;
+    margin: 25px auto;
 }
 
 .vinyl-container {
@@ -171,10 +171,6 @@ body {
     justify-content: center;
 }
 
-.vinyl {
-    width: 40vw;
-    border-radius: 50%;
-}
 
 .album-title {
     font-size: 1.5rem;
@@ -265,8 +261,8 @@ body {
 
 /* ===== FOOTER ===== */
 .footer {
-    background-color: #121228;
-    color: #f1f1f1;
+    background-color: #4A4A5A;
+    color: #c9c9cc;
     padding: 60px 20px 20px;
     font-family: 'Poppins', sans-serif;
     margin-top: 80px;
@@ -288,7 +284,7 @@ body {
 }
 
 .footer-section h3, .footer-section h4 {
-    color: #ddd;
+    color: #0a0b1a;
     margin-bottom: 15px;
 }
 
@@ -313,7 +309,7 @@ body {
 }
 
 .footer-section ul li a:hover {
-    color: #ddd;
+    color: #0a0b1a;
 }
 
 .social-icons {
@@ -339,5 +335,5 @@ body {
     padding-top: 15px;
     margin-top: 40px;
     font-size: 0.85rem;
-    color: #999;
+    color: #0a0b1a;
 }
