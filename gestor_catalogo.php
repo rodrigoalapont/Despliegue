@@ -3,7 +3,7 @@ session_start();
 
 // 1. Verificar la sesión
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    // 🚨 CORRECCIÓN: Redirige al archivo de login correcto
+    // CORRECCIÓN: Redirige al archivo de login correcto
     header('Location: catalogo.php'); 
     exit;
 }
@@ -24,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
     $nombre_artista = $_POST['nombre_artista'] ?? '';
     $descripcion = $_POST['descripcion'] ?? '';
     $precio = $_POST['precio'] ?? 0.00;
-    $anio = $_POST['anio'] ?? 0;
+    $year = $_POST['year'] ?? 0;
     
     // Consulta preparada para mayor seguridad (La tabla debe ser 'vinilos')
-    $sql = "INSERT INTO vinilos (foto_url, nombre_vinilo, nombre_artista, descripcion, precio, anio, visible) VALUES (?, ?, ?, ?, ?, ?, 1)";
+    $sql = "INSERT INTO vinilos (foto_url, nombre_vinilo, nombre_artista, descripcion, precio, year, visible) VALUES (?, ?, ?, ?, ?, ?, 1)";
     
     if ($stmt = $conn->prepare($sql)) {
         // Enlazar parámetros
-        $stmt->bind_param("ssssdi", $foto_url, $nombre_vinilo, $nombre_artista, $descripcion, $precio, $anio);
+        $stmt->bind_param("ssssdi", $foto_url, $nombre_vinilo, $nombre_artista, $descripcion, $precio, $year);
         
         if ($stmt->execute()) {
             $status_message = '<div class="alert alert-success">Vinilo "' . htmlspecialchars($nombre_vinilo) . '" añadido con éxito.</div>';
@@ -172,8 +172,8 @@ $conn->close();
                     <input type="number" step="0.01" class="form-control" id="precio" name="precio" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="anio" class="form-label">Año de Lanzamiento</label>
-                    <input type="number" class="form-control" id="anio" name="anio" min="1900" max="<?php echo date('Y'); ?>" required>
+                    <label for="year" class="form-label">Año de Lanzamiento</label>
+                    <input type="number" class="form-control" id="year" name="year" min="1900" max="<?php echo date('Y'); ?>" required>
                 </div>
             </div>
 
