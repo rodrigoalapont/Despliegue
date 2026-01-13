@@ -8,27 +8,27 @@ $error_message = '';
 
 // 1. Manejar el envío del formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $usuarui = $_POST['usuario'] ?? '';
+    $contraseña = $_POST['contraseña'] ?? '';
 
     // Consulta para buscar el usuario
-    $sql = "SELECT usuario, password FROM login WHERE usuario = ?";
+    $sql = "SELECT usuario, contraseña FROM login WHERE usuario = ?";
 
     if ($stmt = $conn->prepare($sql)) {
         // Enlazar el parámetro 'usuario'
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $usuario);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows == 1) {
             // Usuario encontrado, enlazar resultados
-            $stmt->bind_result($db_username, $db_password);
+            $stmt->bind_result($db_usuario, $db_contraseña);
             $stmt->fetch();
 
             // Autenticación exitosa (comparación de texto plano)
-            if ($password === $db_password) { 
+            if ($contraseña === $db_contraseña) { 
                 $_SESSION['loggedin'] = true;
-                $_SESSION['username'] = $db_username;
+                $_SESSION['usuario'] = $db_usuario;
                 
                 // 🚨 CORRECCIÓN CRÍTICA: Redirige al nombre de archivo correcto
                 header('Location: gestor_catalogo.php'); 
@@ -74,13 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <form action="catalogo.php" method="POST"> 
                         <div class="mb-3">
-                            <label for="username" class="form-label">Usuario:</label>
-                            <input type="text" id="username" name="username" class="form-control" required>
+                            <label for="usuario" class="form-label">Usuario:</label>
+                            <input type="text" id="usuario" name="usuario" class="form-control" required>
                         </div>
                         
                         <div class="mb-4">
-                            <label for="password" class="form-label">Contraseña:</label>
-                            <input type="password" id="password" name="password" class="form-control" required>
+                            <label for="contraseña" class="form-label">Contraseña:</label>
+                            <input type="password" id="contraseña" name="contraseña" class="form-control" required>
                         </div>
                         
                         <button type="submit" class="btn w-100 mb-3 custom-login-btn">Iniciar Sesión</button>
