@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="./estilos.css">
     <title>Midnight Wax</title>
 </head>
 
 <body>
     <nav class="navbar">
-        <div class="logo"><img src="media/LogoMW.svg"></div>
+        <div class="logo"><img src="./media/LogoMW.svg"></div>
         <div class="hamburger" id="hamburger">&#9776;</div>
     </nav>
 
@@ -20,7 +20,7 @@
             <li><a href="#">Jazz</a></li>
             <li><a href="#">Más Albums</a></li>
             <li><a href="#">Háblanos</a></li>
-            <li><a href="catalogo.php">Gestor de Catálogos</a></li>
+            <li><a href="../backend/catalogo.php">Gestor de Catálogos</a></li>
         </ul>
     </aside>
 
@@ -34,13 +34,13 @@
 
     <section class="album-section">
         <div class="vinyl-container">
-            <img src="media/portadadisco.jpg" alt="Vinilo Kind of Blue" class="vinyl">
+            <img src="./media/portadadisco.jpg" alt="Vinilo Kind of Blue" class="vinyl">
         </div>
         <h2 class="album-title">Kind of Blue</h2>
         <h3 class="precio">999,99€</h3>
 
         <div class="player">
-            <img src="media/Spotify.png" alt="Miles Davis" class="album-cover">
+            <img src="./media/Spotify.png" alt="Miles Davis" class="album-cover">
         </div>
     </section>
 
@@ -54,7 +54,7 @@
             En Midnight Wax vivimos el jazz en vinilo. Seleccionamos clásicos,
             <span class="highlight">ediciones limitadas</span> y rarezas para que cada disco sea una experiencia única.
         </p>
-        <img src="media/jazz.jpg" alt="Miles Davis tocando" class="about-img">
+        <img src="./media/jazz.jpg" alt="Miles Davis tocando" class="about-img">
         <p>
             Creemos en el calor del sonido analógico, en la <span class="highlight">emoción de descubrir</span> nuevas
             joyas
@@ -68,7 +68,7 @@
             casi improvisadas, cambió para siempre el curso del jazz. Abandonó la complejidad armónica del bebop y abrió
             paso al jazz modal, donde el espacio, el silencio y la libertad melódica importan más que las notas.
         </p>
-        <img src="media/Mile-Davis.jpg" alt="Miles Davis tocando" class="about-img">
+        <img src="./media/Mile-Davis.jpg" alt="Miles Davis tocando" class="about-img">
         <p>
             Es un álbum que no se escucha: se respira. Un punto de equilibrio entre la técnica y la emoción, entre la
             improvisación y la pureza. Kind of Blue no solo definió a Miles Davis; definió lo que significa tocar con
@@ -105,7 +105,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section about-footer">
-                <img class="logo" src="media/LogoMW.svg" alt="Logo de Midnight Wax">
+                <img class="logo" src="./media/LogoMW.svg" alt="Logo de Midnight Wax">
                 <p>El jazz que escuchas y el que aún no has descubierto.<br>
                     Sumérgete en el sonido analógico y deja que el vinilo te hable.</p>
             </div>
@@ -122,9 +122,9 @@
             <div class="footer-section social">
                 <h4>Síguenos</h4>
                 <div class="social-icons">
-                    <a href="#"><img src="media/instagram.webp" alt="Instagram"></a>
-                    <a href="#"><img src="media/x.avif" alt="Twitter"></a>
-                    <a href="#"><img src="media/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="./media/instagram.webp" alt="Instagram"></a>
+                    <a href="#"><img src="./media/x.avif" alt="Twitter"></a>
+                    <a href="#"><img src="./media/facebook.png" alt="Facebook"></a>
                 </div>
             </div>
         </div>
@@ -136,7 +136,7 @@
 
     <!-- Cargar los vinilos Guardados -->
     <script>
-        fetch('vinilos.php')
+        fetch('../backend/vinilos.php')
             .then(res => res.json())
             .then(vinilos => {
                 const catalogo = document.getElementById('catalogo-dinamico');

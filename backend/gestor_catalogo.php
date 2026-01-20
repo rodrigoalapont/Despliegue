@@ -115,7 +115,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Catálogo - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../frontend/estilos.css">
     <style>
         /* Estilos específicos del panel */
         body { background-color: #0a0b1a !important; color: #e1dddd; }
@@ -136,10 +136,10 @@ $conn->close();
 <div class="container admin-container">
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div class="d-flex gap-2 align-items-center">
-        <a href="index.html" class="btn btn-outline-light">Volver a Home</a>
+        <a href="../frontend/index.html" class="btn btn-outline-light">Volver a Home</a>
         <h1 class="text-white mb-0">Panel de Gestión de Catálogo</h1>
     </div>
-    <a href="logout.php" class="btn btn-danger">Cerrar Sesión</a>
+    <a href="./logout.php" class="btn btn-danger">Cerrar Sesión</a>
 </div>
 
     <hr>
@@ -147,7 +147,7 @@ $conn->close();
 
     <div class="module-card">
         <h3>💿 Añadir Nuevo Vinilo</h3>
-        <form action="gestor_catalogo.php" method="POST"> 
+        <form action="./gestor_catalogo.php" method="POST"> 
             <input type="hidden" name="accion" value="anadir">
             
             <div class="row">
@@ -188,7 +188,7 @@ $conn->close();
 
     <div class="module-card">
         <h3>🔍 Buscar y Gestionar Vinilos</h3>
-        <form action="gestor_catalogo.php" method="GET" class="mb-4">
+        <form action="./gestor_catalogo.php" method="GET" class="mb-4">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar por nombre de vinilo o artista..." name="search_term" value="<?php echo htmlspecialchars($search_term); ?>">
                 <button class="btn btn-outline-light" type="submit">Buscar</button>
@@ -220,7 +220,7 @@ $conn->close();
                                     </span>
                                 </td>
                                 <td>
-                                    <form action="gestor_catalogo.php?search_term=<?php echo urlencode($search_term); ?>" method="POST" class="d-inline">
+                                    <form action="./gestor_catalogo.php?search_term=<?php echo urlencode($search_term); ?>" method="POST" class="d-inline">
                                         <input type="hidden" name="accion" value="toggle_visible">
                                         <input type="hidden" name="id" value="<?php echo $vinilo['id']; ?>">
                                         <input type="hidden" name="new_visible" value="<?php echo $vinilo['visible'] ? 0 : 1; ?>">
@@ -229,7 +229,7 @@ $conn->close();
                                         </button>
                                     </form>
 
-                                    <form action="gestor_catalogo.php?search_term=<?php echo urlencode($search_term); ?>" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de que deseas BORRAR permanentemente este vinilo?');">
+                                    <form action="./gestor_catalogo.php?search_term=<?php echo urlencode($search_term); ?>" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de que deseas BORRAR permanentemente este vinilo?');">
                                         <input type="hidden" name="accion" value="borrar">
                                         <input type="hidden" name="id" value="<?php echo $vinilo['id']; ?>">
                                         <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
