@@ -131,11 +131,16 @@ $conn->close();
 </head>
 <body>
 
+
+
 <div class="container admin-container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="text-white">Panel de Gestión de Catálogo</h1>
-        <a href="logout.php" class="btn btn-danger">Cerrar Sesión</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex gap-2 align-items-center">
+        <a href="index.html" class="btn btn-outline-light">Volver a Home</a>
+        <h1 class="text-white mb-0">Panel de Gestión de Catálogo</h1>
     </div>
+    <a href="logout.php" class="btn btn-danger">Cerrar Sesión</a>
+</div>
 
     <hr>
     <?php echo $status_message; ?>
