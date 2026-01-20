@@ -44,6 +44,11 @@
         </div>
     </section>
 
+    <!-- CATÁLOGO REAL DESDE BBDD -->
+    <section class="album-section" id="catalogo-dinamico">
+        <!-- Los vinilos del gestor se cargan aquí -->
+    </section>
+
     <section class="about">
         <p>
             En Midnight Wax vivimos el jazz en vinilo. Seleccionamos clásicos,
@@ -59,14 +64,18 @@
 
     <section class="about">
         <p>
-            Kind of Blue  de Miles Davis no es solo un disco, es una declaración de principios. Grabado en dos sesiones casi improvisadas, cambió para siempre el curso del jazz. Abandonó la complejidad armónica del bebop y abrió paso al jazz modal, donde el espacio, el silencio y la libertad melódica importan más que las notas.
+            Kind of Blue de Miles Davis no es solo un disco, es una declaración de principios. Grabado en dos sesiones
+            casi improvisadas, cambió para siempre el curso del jazz. Abandonó la complejidad armónica del bebop y abrió
+            paso al jazz modal, donde el espacio, el silencio y la libertad melódica importan más que las notas.
         </p>
         <img src="media/Mile-Davis.jpg" alt="Miles Davis tocando" class="about-img">
         <p>
-            Es un álbum que no se escucha: se respira. Un punto de equilibrio entre la técnica y la emoción, entre la improvisación y la pureza. Kind of Blue no solo definió a Miles Davis; definió lo que significa tocar con alma.
+            Es un álbum que no se escucha: se respira. Un punto de equilibrio entre la técnica y la emoción, entre la
+            improvisación y la pureza. Kind of Blue no solo definió a Miles Davis; definió lo que significa tocar con
+            alma.
         </p>
     </section>
-    
+
     <script>
         const hamburger = document.getElementById('hamburger');
         const sideMenu = document.getElementById('side-menu');
@@ -94,34 +103,60 @@
     </script>
 
     <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section about-footer">
-            <img  class="logo" src="media/LogoMW.svg" alt="Logo de Midnight Wax">
-            <p>El jazz que escuchas y el que aún no has descubierto.<br>
-               Sumérgete en el sonido analógico y deja que el vinilo te hable.</p>
-        </div>
+        <div class="footer-content">
+            <div class="footer-section about-footer">
+                <img class="logo" src="media/LogoMW.svg" alt="Logo de Midnight Wax">
+                <p>El jazz que escuchas y el que aún no has descubierto.<br>
+                    Sumérgete en el sonido analógico y deja que el vinilo te hable.</p>
+            </div>
 
-        <div class="footer-section links">
-            <h4>Enlaces</h4>
-            <ul>
-                <li><a href="#">Jazz</a></li>
-                <li><a href="#">Más Albums</a></li>
-                <li><a href="#">Háblanos</a></li>
-            </ul>
-        </div>
+            <div class="footer-section links">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#">Jazz</a></li>
+                    <li><a href="#">Más Albums</a></li>
+                    <li><a href="#">Háblanos</a></li>
+                </ul>
+            </div>
 
-        <div class="footer-section social">
-            <h4>Síguenos</h4>
-            <div class="social-icons">
-                <a href="#"><img src="media/instagram.webp" alt="Instagram"></a>
-                <a href="#"><img src="media/x.avif" alt="Twitter"></a>
-                <a href="#"><img src="media/facebook.png" alt="Facebook"></a>
+            <div class="footer-section social">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <a href="#"><img src="media/instagram.webp" alt="Instagram"></a>
+                    <a href="#"><img src="media/x.avif" alt="Twitter"></a>
+                    <a href="#"><img src="media/facebook.png" alt="Facebook"></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="footer-bottom">
-        <p>&copy; 2025 Midnight Wax. Todos los derechos reservados.</p>
-    </div>
-</footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Midnight Wax. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Cargar los vinilos Guardados -->
+    <script>
+        fetch('vinilos.php')
+            .then(res => res.json())
+            .then(vinilos => {
+                const catalogo = document.getElementById('catalogo-dinamico');
+        
+                vinilos.forEach(v => {
+                    const item = document.createElement('div');
+                    item.classList.add('vinyl-item');
+        
+                    item.innerHTML = `
+                        <div class="vinyl-container">
+                            <img src="${v.foto_url}" alt="${v.nombre_vinilo}" class="vinyl">
+                        </div>
+                        <h2 class="album-title">${v.nombre_vinilo}</h2>
+                        <h3 class="precio">${parseFloat(v.precio).toFixed(2)}€</h3>
+                    `;
+        
+                    catalogo.appendChild(item);
+                });
+            });
+        </script>
 </body>
+
+</html>
