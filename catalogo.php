@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Iniciar la sesión al principio del archivo
 session_start();
 include("conexion.php");
@@ -8,7 +11,7 @@ $error_message = '';
 
 // 1. Manejar el envío del formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuarui = $_POST['usuario'] ?? '';
+    $usuario = $_POST['usuario'] ?? '';
     $contraseña = $_POST['contraseña'] ?? '';
 
     // Consulta para buscar el usuario
