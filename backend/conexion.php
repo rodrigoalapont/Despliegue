@@ -1,10 +1,9 @@
 <?php
-// conexion.php
  
-$host = "localhost";
-$user = "root"; // Usuario por defecto en XAMPP/WAMP
-$pass = "";     // Contraseña vacía por defecto
-$db = "login_midnight_wax";
+$host = getenv('MYSQLHOST');
+$user = getenv('MYSQLUSER');
+$pass = getenv('MYSQLPASSWORD');
+$db = getenv('MYSQLDATABASE');
  
 $conn = new mysqli($host,$user,$pass,$db);
  
