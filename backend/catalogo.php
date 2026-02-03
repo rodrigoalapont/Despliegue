@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container">
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-5">
-            <a href="despliegue-gilt.vercel.app" class="btn btn-outline-light">Volver a Home</a>
+            <a href="https://despliegue-gilt.vercel.app" class="btn btn-outline-light">Volver a Home</a>
             <div class="card p-4 shadow">
                 <h3 class="text-center mb-3">Gestión de Catálogo</h3>
 
