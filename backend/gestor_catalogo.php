@@ -136,7 +136,7 @@ $conn->close();
 <div class="container admin-container">
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div class="d-flex gap-2 align-items-center">
-        <a href="../frontend/index.html" class="btn btn-outline-light">Volver a Home</a>
+        <a href="https://despliegue-gilt.vercel.app" class="btn btn-outline-light">Volver a Home</a>
         <h1 class="text-white mb-0">Panel de Gestión de Catálogo</h1>
     </div>
     <a href="./logout.php" class="btn btn-danger">Cerrar Sesión</a>
