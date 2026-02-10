@@ -4,8 +4,8 @@ session_start();
 // 2. Incluir conexión
 require_once 'conexion.php';
 
-// 3. Obtener todos los vinilos
-$sql = "SELECT * FROM vinilos ORDER BY id DESC";
+// 3. Obtener solo los vinilos visibles para el público
+$sql = "SELECT * FROM vinilos WHERE visible = 1 ORDER BY id DESC";
 $result = $conn->query($sql);
 
 $vinilos = [];
@@ -104,11 +104,6 @@ $conn->close();
             color: #fff;
             margin-top: 10px;
         }
-        .status-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
         .btn-custom {
             background-color: #5a5ad0;
             border-color: #5a5ad0;
@@ -161,9 +156,6 @@ $conn->close();
             <?php foreach ($vinilos as $v): ?>
                 <div class="col-md-4 col-lg-3">
                     <div class="vinyl-card position-relative">
-                        <span class="badge status-badge <?php echo $v['visible'] ? 'bg-success' : 'bg-warning'; ?>">
-                            <?php echo $v['visible'] ? 'Visible' : 'Oculto'; ?>
-                        </span>
                         <div class="vinyl-img-container">
                             <!-- Ruta corregida si las fotos están en frontend/media -->
                             <?php 
