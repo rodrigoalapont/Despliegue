@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-// 1. Verificar la sesión (opcional, pero recomendado si es parte del panel de admin)
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: catalogo.php');
-    exit;
-}
-
 // 2. Incluir conexión
 require_once 'conexion.php';
 
