@@ -4,8 +4,8 @@ session_start();
 // 2. Incluir conexión
 require_once 'conexion.php';
 
-// 3. Obtener todos los vinilos
-$sql = "SELECT * FROM vinilos ORDER BY id DESC";
+// 3. Obtener solo los vinilos visibles para el público
+$sql = "SELECT * FROM vinilos WHERE visible = 1 ORDER BY id DESC";
 $result = $conn->query($sql);
 
 $vinilos = [];
@@ -104,11 +104,6 @@ $conn->close();
             color: #fff;
             margin-top: 10px;
         }
-        .status-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
         .btn-custom {
             background-color: #5a5ad0;
             border-color: #5a5ad0;
@@ -137,7 +132,6 @@ $conn->close();
     </style>
 </head>
 <body>
-    <div class="overlay" id="overlay"></div>
 
 <div class="container listing-container">
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -161,9 +155,6 @@ $conn->close();
             <?php foreach ($vinilos as $v): ?>
                 <div class="col-md-4 col-lg-3">
                     <div class="vinyl-card position-relative">
-                        <span class="badge status-badge <?php echo $v['visible'] ? 'bg-success' : 'bg-warning'; ?>">
-                            <?php echo $v['visible'] ? 'Visible' : 'Oculto'; ?>
-                        </span>
                         <div class="vinyl-img-container">
                             <!-- Ruta corregida si las fotos están en frontend/media -->
                             <?php 
@@ -239,24 +230,5 @@ $conn->close();
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const sideMenu = document.getElementById('side-menu');
-    const overlay = document.getElementById('overlay');
-    const closeBtn = document.getElementById('close-btn');
-
-    const closeMenu = () => {
-        sideMenu.classList.remove('show');
-        overlay.classList.remove('show');
-    };
-
-    hamburger.addEventListener('click', () => {
-        sideMenu.classList.toggle('show');
-        overlay.classList.toggle('show');
-    });
-
-    overlay.addEventListener('click', closeMenu);
-    closeBtn.addEventListener('click', closeMenu);
-</script>
 </body>
 </html>
