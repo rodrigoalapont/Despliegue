@@ -133,15 +133,32 @@ $conn->close();
 </head>
 <body>
 
+    <nav class="navbar">
+        <div class="logo"><img src="../frontend/media/LogoMW.svg"></div>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+    </nav>
+
+    <aside class="side-menu" id="side-menu">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <ul>
+            <li><a href="https://despliegue-gilt.vercel.app/">Jazz</a></li>
+            <li><a href="https://despliegue-gilt.vercel.app/">Más Albums</a></li>
+            <li><a href="https://despliegue-gilt.vercel.app/">Háblanos</a></li>
+            <li><a href="listado_vinilos.php">Ver Vinilos</a></li>
+            <li><a href="catalogo.php">Gestor de Catálogos</a></li>
+        </ul>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
 <div class="container listing-container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1 class="text-white">Listado Completo de Vinilos</h1>
-            <p class="text-white opacity-75">Vista previa de todo el catálogo en la base de datos</p>
+            <h1 class="text-white">Catálogo de Vinilos</h1>
+            <p class="text-white opacity-75">Explora nuestra colección y deja tu opinión</p>
         </div>
         <div class="d-flex gap-2">
-            <a href="gestor_catalogo.php" class="btn btn-outline-light">Volver al Gestor</a>
-            <a href="https://despliegue-gilt.vercel.app" class="btn btn-custom">Volver a Home</a>
+            <a href="https://despliegue-gilt.vercel.app/" class="btn btn-custom">Volver a Home</a>
         </div>
     </div>
 
@@ -231,5 +248,24 @@ $conn->close();
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const sideMenu = document.getElementById('side-menu');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('close-btn');
+
+    const closeMenu = () => {
+        sideMenu.classList.remove('show');
+        overlay.classList.remove('show');
+    };
+
+    hamburger.addEventListener('click', () => {
+        sideMenu.classList.toggle('show');
+        overlay.classList.toggle('show');
+    });
+
+    overlay.addEventListener('click', closeMenu);
+    closeBtn.addEventListener('click', closeMenu);
+</script>
 </body>
 </html>
