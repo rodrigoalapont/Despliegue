@@ -52,13 +52,20 @@ if (isset($_GET['search_term'])) {
     $search_term = trim($_GET['search_term']);
 }
 
-// Si hay término de búsqueda O si se está actualizando un vinilo (para recargar la lista)
-if (!empty($search_term) || isset($_POST['accion'])) {
-    $search_pattern = "%" . $search_term . "%";
-    $sql = "SELECT id, nombre_vinilo, nombre_artista, visible FROM vinilos WHERE nombre_vinilo LIKE ? OR nombre_artista LIKE ?";
+// Si hay término de búsqueda O si se solicita mostrar todo O si se está actualizando un vinilo (para recargar la lista)
+if (!empty($search_term) || isset($_GET['show_all']) || isset($_POST['accion'])) {
     
-    if ($stmt = $conn->prepare($sql)) {
+    if (isset($_GET['show_all'])) {
+        $sql = "SELECT id, nombre_vinilo, nombre_artista, visible FROM vinilos ORDER BY id DESC";
+        $stmt = $conn->prepare($sql);
+    } else {
+        $search_pattern = "%" . $search_term . "%";
+        $sql = "SELECT id, nombre_vinilo, nombre_artista, visible FROM vinilos WHERE nombre_vinilo LIKE ? OR nombre_artista LIKE ?";
+        $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $search_pattern, $search_pattern);
+    }
+    
+    if ($stmt) {
         $stmt->execute();
         $result = $stmt->get_result();
         while ($row = $result->fetch_assoc()) {
@@ -193,6 +200,7 @@ $conn->close();
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar por nombre de vinilo o artista..." name="search_term" value="<?php echo htmlspecialchars($search_term); ?>">
                 <button class="btn btn-outline-light" type="submit">Buscar</button>
+                <a href="./gestor_catalogo.php?show_all=1" class="btn btn-secondary">Mostrar Todos</a>
             </div>
         </form>
 
