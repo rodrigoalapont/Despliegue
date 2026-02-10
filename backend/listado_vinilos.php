@@ -119,7 +119,7 @@ $conn->close();
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h1 class="text-white">Listado Completo de Vinilos</h1>
-            <p class="text-muted">Vista previa de todo el catálogo en la base de datos</p>
+            <p class="text-white opacity-75">Vista previa de todo el catálogo en la base de datos</p>
         </div>
         <div class="d-flex gap-2">
             <a href="gestor_catalogo.php" class="btn btn-outline-light">Volver al Gestor</a>

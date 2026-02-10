@@ -197,10 +197,12 @@ $conn->close();
     <div class="module-card">
         <h3>🔍 Buscar y Gestionar Vinilos</h3>
         <form action="./gestor_catalogo.php" method="GET" class="mb-4">
+            <div class="mb-3">
+                <a href="./gestor_catalogo.php?show_all=1" class="btn btn-secondary btn-sm">Mostrar Todos los Vinilos</a>
+            </div>
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar por nombre de vinilo o artista..." name="search_term" value="<?php echo htmlspecialchars($search_term); ?>">
                 <button class="btn btn-outline-light" type="submit">Buscar</button>
-                <a href="./gestor_catalogo.php?show_all=1" class="btn btn-secondary">Mostrar Todos</a>
             </div>
         </form>
 

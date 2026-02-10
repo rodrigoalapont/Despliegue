@@ -20,7 +20,7 @@
             <li><a href="#">Jazz</a></li>
             <li><a href="#">Más Albums</a></li>
             <li><a href="#">Háblanos</a></li>
-            <li><a href="https://despliegue-production-47dc.up.railway.app/listado_vinilos.php">Ver Catálogo Completo</a></li>
+            <li><a href="https://despliegue-production-47dc.up.railway.app/catalogo.php">Ver Vinilos</a></li>
             <li><a href="https://despliegue-production-47dc.up.railway.app/catalogo.php">Gestor de Catálogos</a></li>
         </ul>
     </aside>
@@ -141,11 +141,11 @@
             .then(res => res.json())
             .then(vinilos => {
                 const catalogo = document.getElementById('catalogo-dinamico');
-        
+
                 vinilos.forEach(v => {
                     const item = document.createElement('div');
                     item.classList.add('vinyl-item');
-        
+
                     item.innerHTML = `
                         <div class="vinyl-container">
                             <img src="${v.foto_url}" alt="${v.nombre_vinilo}" class="vinyl">
@@ -153,11 +153,11 @@
                         <h2 class="album-title">${v.nombre_vinilo}</h2>
                         <h3 class="precio">${parseFloat(v.precio).toFixed(2)}€</h3>
                     `;
-        
+
                     catalogo.appendChild(item);
                 });
             });
-        </script>
+    </script>
 </body>
 
 </html>
