@@ -21,6 +21,20 @@ if ($result) {
     }
 }
 
+// 4. Obtener todas las opiniones con el nombre del vinilo
+$sql_opiniones = "SELECT o.*, v.nombre_vinilo 
+                  FROM opiniones o 
+                  JOIN vinilos v ON o.vinilo_id = v.id 
+                  ORDER BY o.fecha DESC";
+$result_opiniones = $conn->query($sql_opiniones);
+
+$opiniones = [];
+if ($result_opiniones) {
+    while ($row = $result_opiniones->fetch_assoc()) {
+        $opiniones[] = $row;
+    }
+}
+
 $conn->close();
 ?>
 
@@ -111,6 +125,21 @@ $conn->close();
             border-color: #7a7ae6;
             color: white;
         }
+        /* Estilos Carousel */
+        .carousel-item { padding: 20px; }
+        .review-card {
+            background-color: #1a1b33;
+            border: 1px solid #4b4e77;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .review-text { font-style: italic; font-size: 1.1rem; border-left: 3px solid #5a5ad0; padding-left: 15px; margin-bottom: 20px; }
+        .review-author { font-weight: bold; color: #5a5ad0; }
+        .review-meta { font-size: 0.85rem; color: #a1a1a1; }
+        .carousel-control-prev, .carousel-control-next { width: 5%; }
     </style>
 </head>
 <body>
@@ -159,13 +188,60 @@ $conn->close();
                             <div class="vinyl-artist"><?php echo htmlspecialchars($v['nombre_artista']); ?></div>
                             <div class="vinyl-info"><strong>Año:</strong> <?php echo htmlspecialchars($v['year']); ?></div>
                             <div class="vinyl-info text-truncate"><?php echo htmlspecialchars($v['descripcion']); ?></div>
-                            <div class="price-tag"><?php echo number_format($v['precio'], 2, ',', '.'); ?>€</div>
+                            <div class="price-tag mb-3"><?php echo number_format($v['precio'], 2, ',', '.'); ?>€</div>
+                            <a href="dejar_opinion.php?id=<?php echo $v['id']; ?>" class="btn btn-custom btn-sm w-100">Dejar Opinión</a>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
+
+    <!-- SECCIÓN DE OPINIONES (CARRUSEL) -->
+    <div class="mt-5 pt-5 pb-5">
+        <h2 class="text-white text-center mb-4">Lo que dicen nuestros clientes</h2>
+        <hr class="mb-5 mx-auto" style="border-color: #4b4e77; width: 100px; border-width: 3px;">
+
+        <?php if (empty($opiniones)): ?>
+            <div class="text-center text-muted">Aún no hay opiniones. ¡Sé el primero en dejar una!</div>
+        <?php else: ?>
+            <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <?php foreach ($opiniones as $index => $op): ?>
+                        <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                            <div class="review-card">
+                                <div class="review-text">
+                                    "<?php echo htmlspecialchars($op['comentario']); ?>"
+                                </div>
+                                <div class="d-flex justify-content-between align-items-end">
+                                    <div>
+                                        <div class="review-author"><?php echo htmlspecialchars($op['nombre_usuario']); ?></div>
+                                        <div class="review-meta"><?php echo htmlspecialchars($op['ciudad']); ?></div>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="badge bg-dark border border-secondary"><?php echo htmlspecialchars($op['nombre_vinilo']); ?></div>
+                                        <div class="review-meta mt-1"><?php echo date('d/m/Y', strtotime($op['fecha'])); ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                
+                <?php if (count($opiniones) > 1): ?>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
