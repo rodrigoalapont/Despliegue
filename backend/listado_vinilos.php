@@ -137,23 +137,6 @@ $conn->close();
     </style>
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="logo"><img src="../frontend/media/LogoMW.svg"></div>
-        <div class="hamburger" id="hamburger">&#9776;</div>
-    </nav>
-
-    <aside class="side-menu" id="side-menu">
-        <span class="close-btn" id="close-btn">&times;</span>
-        <ul>
-            <li><a href="https://despliegue-gilt.vercel.app/">Jazz</a></li>
-            <li><a href="https://despliegue-gilt.vercel.app/">Más Albums</a></li>
-            <li><a href="https://despliegue-gilt.vercel.app/">Háblanos</a></li>
-            <li><a href="listado_vinilos.php">Ver Vinilos</a></li>
-            <li><a href="catalogo.php">Gestor de Catálogos</a></li>
-        </ul>
-    </aside>
-
     <div class="overlay" id="overlay"></div>
 
 <div class="container listing-container">
